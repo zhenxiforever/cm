@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	
+	  <!-- 加载jdbc配置文件 -->
+	<!-- <properties resource="config/jdbc.properties"/> -->
+	
+	<!-- 加载项目中classpath下的驱动jar包 -->
+	<classPathEntry location="C:/Users/lenovo/.m2/repository/mysql/mysql-connector-java/5.1.23/mysql-connector-java-5.1.23.jar" />
+	
+	<context id="DB2Tables"  targetRuntime="MyBatis3">
+	
+     <property name="javaFileEncoding" value="UTF-8" />  
+		
+		<!-- 生成的pojo，将implements Serializable-->    
+    <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+	
+		<!-- 生成类的注释信息 -->
+		<commentGenerator type="org.mybatis.generator.internal.CustomeCommentGenerator">
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->  
+            <property name="suppressAllComments" value="false" />  
+            <property name="suppressDate" value="false" />  
+            <property name="addRemarkComments" value="true"/>
+		</commentGenerator>
+		<!-- 数据库连接信息 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                connectionURL="jdbc:mysql://127.0.0.1:3306/?useUnicode=true&amp;characterEncoding=UTF-8"
+                userId="wechat"
+                password="wechat">
+		</jdbcConnection>
+		<!-- 数据类型同java类型  转换定义-->
+		<javaTypeResolver >
+		      <property name="forceBigDecimals" value="false" /><!-- 根据 数据库精度是否转对应数据类型 -->
+		      <!-- 
+		      	如果精度>0或者长度>18，就会使用java.math.BigDecimal
+				如果精度=0并且10<=长度<=18，就会使用java.lang.Long
+				如果精度=0并且5<=长度<=9，就会使用java.lang.Integer
+				如果精度=0并且长度<5，就会使用java.lang.Short
+		       -->
+		</javaTypeResolver>
+		<!-- 设置生成的实体类相关 位置以及属性 
+			生成model模型，对应的包路径，以及文件存放路径(targetProject)，targetProject可以指定具体的路径,如./src/main/java，    
+                   也可以使用“MAVEN”来自动生成，这样生成的代码会在target/generatord-source目录下
+		-->		
+		<javaModelGenerator targetPackage="com.smile.wechat.dao.model" targetProject="cm">
+			<!-- 是否在当前路径下新加一层schema,eg：false路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->
+		      <property name="enableSubPackages" value="true" />
+		      <!-- 是否针对string类型的字段在set的时候进行trim调用 -->
+		      <property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<!-- map xml 的映射 类型以及位置   对应的mapper.xml文件-->
+		<sqlMapGenerator targetPackage="mybatis.mysql"
+			targetProject="cm">
+			<!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<!--  -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.smile.wechat.dao.mapper" targetProject="cm">
+			<!--  context 的 targetRuntime="MyBatis3"是有以下：
+				ANNOTATEDMAPPER:基于注解的Mapper接口，不会有对应的XML映射文件
+				MIXEDMAPPER:XML和注解的混合形式，(上面这种情况中的)SqlProvider注解方法会被XML替代。
+				XMLMAPPER:所有的方法都在XML中，接口调用依赖XML文件。
+			 -->
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		
+		<table tableName="%" schema="wechat" catalog="wechat"
+							enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"    
+               enableSelectByExample="false" selectByExampleQueryId="false"/>
+               
+    <table tableName="%" schema="wechatmanage" catalog="wechatmanage"
+							enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"    
+               enableSelectByExample="false" selectByExampleQueryId="false"/>
+<!-- 		<table tableName="sys_conf" domainObjectName="SysConf"><property name="useActualColumnNames" value="true" /></table>
+		<table tableName="sys_func" domainObjectName="SysFunction"><property name="useActualColumnNames" value="true" /></table>
+		<table tableName="sys_func_url" domainObjectName="SysFuncUrl"><property name="useActualColumnNames" value="true" /></table>
+		<table tableName="sys_log_oper" domainObjectName="SysLogOper"><property name="useActualColumnNames" value="true" /></table>
+		<table tableName="sys_menu" domainObjectName="SysMenu"><property name="useActualColumnNames" value="true" /></table>
+		<table tableName="sys_operate" domainObjectName="SysOperate"><property name="useActualColumnNames" value="true" /></table>
+		<table tableName="sys_role" domainObjectName="SysRole"><property name="useActualColumnNames" value="true" /></table>
+		<table tableName="sys_role_func" domainObjectName="SysRoleFunc"><property name="useActualColumnNames" value="true" /></table>
+		<table tableName="sys_url" domainObjectName="SysUrl"><property name="useActualColumnNames" value="true" /></table>
+		<table tableName="sys_user" domainObjectName="SysUser"><property name="useActualColumnNames" value="true" /></table>
+		<table tableName="sys_user_role" domainObjectName="SysUserRole"><property name="useActualColumnNames" value="true" /></table>
+		<table tableName="user_account" domainObjectName="UserAccount"><property name="useActualColumnNames" value="true" /></table>
+		<table tableName="wx_account" domainObjectName="WechatAccount"><property name="useActualColumnNames" value="true" /></table>
+		<table tableName="wx_module" domainObjectName="WechatModule"><property name="useActualColumnNames" value="true" /></table>
+	 -->
+		
+	</context>
+	
+</generatorConfiguration>

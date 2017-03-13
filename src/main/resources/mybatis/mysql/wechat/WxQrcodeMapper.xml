@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cm.dao.mapper.wechat.WxQrcodeMapper" >
+  <resultMap id="BaseResultMap" type="com.cm.dao.model.wechat.WxQrcode" >
+    <id column="QRCODEID" property="qrcodeid" jdbcType="VARCHAR" />
+    <result column="TICKET" property="ticket" jdbcType="VARCHAR" />
+    <result column="CHANNEL" property="channel" jdbcType="VARCHAR" />
+    <result column="ACTIONTYPE" property="actiontype" jdbcType="INTEGER" />
+    <result column="EXPIRESECONDS" property="expireseconds" jdbcType="INTEGER" />
+    <result column="SCENEID" property="sceneid" jdbcType="INTEGER" />
+    <result column="SCENESTR" property="scenestr" jdbcType="VARCHAR" />
+    <result column="ONLINESTATUS" property="onlinestatus" jdbcType="INTEGER" />
+    <result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    QRCODEID, TICKET, CHANNEL, ACTIONTYPE, EXPIRESECONDS, SCENEID, SCENESTR, ONLINESTATUS, 
+    CREATETIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ${schema}.wx_qrcode
+    where QRCODEID = #{qrcodeid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from ${schema}.wx_qrcode
+    where QRCODEID = #{qrcodeid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cm.dao.model.wechat.WxQrcode" >
+    insert into ${schema}.wx_qrcode (QRCODEID, TICKET, CHANNEL, 
+      ACTIONTYPE, EXPIRESECONDS, SCENEID, 
+      SCENESTR, ONLINESTATUS, CREATETIME
+      )
+    values (#{qrcodeid,jdbcType=VARCHAR}, #{ticket,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, 
+      #{actiontype,jdbcType=INTEGER}, #{expireseconds,jdbcType=INTEGER}, #{sceneid,jdbcType=INTEGER}, 
+      #{scenestr,jdbcType=VARCHAR}, #{onlinestatus,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cm.dao.model.wechat.WxQrcode" >
+    insert into ${schema}.wx_qrcode
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="qrcodeid != null" >
+        QRCODEID,
+      </if>
+      <if test="ticket != null" >
+        TICKET,
+      </if>
+      <if test="channel != null" >
+        CHANNEL,
+      </if>
+      <if test="actiontype != null" >
+        ACTIONTYPE,
+      </if>
+      <if test="expireseconds != null" >
+        EXPIRESECONDS,
+      </if>
+      <if test="sceneid != null" >
+        SCENEID,
+      </if>
+      <if test="scenestr != null" >
+        SCENESTR,
+      </if>
+      <if test="onlinestatus != null" >
+        ONLINESTATUS,
+      </if>
+      <if test="createtime != null" >
+        CREATETIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="qrcodeid != null" >
+        #{qrcodeid,jdbcType=VARCHAR},
+      </if>
+      <if test="ticket != null" >
+        #{ticket,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="actiontype != null" >
+        #{actiontype,jdbcType=INTEGER},
+      </if>
+      <if test="expireseconds != null" >
+        #{expireseconds,jdbcType=INTEGER},
+      </if>
+      <if test="sceneid != null" >
+        #{sceneid,jdbcType=INTEGER},
+      </if>
+      <if test="scenestr != null" >
+        #{scenestr,jdbcType=VARCHAR},
+      </if>
+      <if test="onlinestatus != null" >
+        #{onlinestatus,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cm.dao.model.wechat.WxQrcode" >
+    update ${schema}.wx_qrcode
+    <set >
+      <if test="ticket != null" >
+        TICKET = #{ticket,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        CHANNEL = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="actiontype != null" >
+        ACTIONTYPE = #{actiontype,jdbcType=INTEGER},
+      </if>
+      <if test="expireseconds != null" >
+        EXPIRESECONDS = #{expireseconds,jdbcType=INTEGER},
+      </if>
+      <if test="sceneid != null" >
+        SCENEID = #{sceneid,jdbcType=INTEGER},
+      </if>
+      <if test="scenestr != null" >
+        SCENESTR = #{scenestr,jdbcType=VARCHAR},
+      </if>
+      <if test="onlinestatus != null" >
+        ONLINESTATUS = #{onlinestatus,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where QRCODEID = #{qrcodeid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cm.dao.model.wechat.WxQrcode" >
+    update ${schema}.wx_qrcode
+    set TICKET = #{ticket,jdbcType=VARCHAR},
+      CHANNEL = #{channel,jdbcType=VARCHAR},
+      ACTIONTYPE = #{actiontype,jdbcType=INTEGER},
+      EXPIRESECONDS = #{expireseconds,jdbcType=INTEGER},
+      SCENEID = #{sceneid,jdbcType=INTEGER},
+      SCENESTR = #{scenestr,jdbcType=VARCHAR},
+      ONLINESTATUS = #{onlinestatus,jdbcType=INTEGER},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP}
+    where QRCODEID = #{qrcodeid,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <select id="getQrcodeByTicket" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ${schema}.wx_qrcode
+    where TICKET = #{ticket,jdbcType=VARCHAR}
+  </select>
+</mapper>
